@@ -56,7 +56,7 @@ export function exit(code) {
   return code + 1
 }
 ```
-js로 작성된 간단한 파일이 있따.
+js로 작성된 간단한 파일
 
 ### index.ts
 ```ts
