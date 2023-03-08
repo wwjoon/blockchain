@@ -1,6 +1,5 @@
 # ⛓️ Blockchain
 
-
 ## ⚡ Technical Skills
 
 <div>
@@ -8,8 +7,8 @@
     <img src="https://img.shields.io/badge/TypeScript-007acc?style=flat&logo=typescript&logoColor=white"/>
 </div>
 
-
 ## 📝 Table of Contents
+
 - [🌅 tsconfig.json](#tsconfig)
 - [🧾 Declaration Files](#declaration-file)
 - [📜 JSDoc](#jsdoc)
@@ -48,37 +47,43 @@ lib 은 Javascript 코드가 어떤 환경에서 동작될지를 정의한다.
 npm으로 설치한 node_modules에 존재하는 Javascript 파일에 대한 type 정의 방법
 
 ### myPackage.js
+
 ```js
 export function init(config) {
-  return true
+  return true;
 }
 export function exit(code) {
-  return code + 1
+  return code + 1;
 }
 ```
+
 js로 작성된 간단한 파일
 
 ### index.ts
+
 ```ts
-import { init, exit } from 'myPackage'
+import { init, exit } from "myPackage";
 
-init({ url: 'true' })
+init({ url: "true" });
 
-exit(1)
+exit(1);
 ```
+
 myPackage를 import하게되면 myPackage에 대한 type을 찾을 수 없다며 에러가 표시된다.
 
 ### myPackage.d.ts
+
 ```ts
 interface Config {
-  url: string
+  url: string;
 }
 
-declare module 'myPackage' {
-  function init(config: Config): boolean
-  function exit(code: number): number
+declare module "myPackage" {
+  function init(config: Config): boolean;
+  function exit(code: number): number;
 }
 ```
+
 `{패키지명}.d.ts` 파일을 작성한 후 js 파일에 있는 함수들의 타입을 정의해준다면 에러가 사라지며 자동완성 기능을 제공한다.
 
 ---
@@ -88,6 +93,7 @@ declare module 'myPackage' {
 JSDoc은 기존 프로젝트에 존재하는 Javascript 파일들과 Typescript를 결합하기 위해 이용한다.
 
 ### tsconfig.json
+
 ```json
 {
   "include": ["src"], // typescript 소스가 작성되는 경로
@@ -100,18 +106,22 @@ JSDoc은 기존 프로젝트에 존재하는 Javascript 파일들과 Typescript�
   }
 }
 ```
+
 먼저 tsconfig.json의 compilerOptions에 allowJs를 `true`로 설정해준다.
 
 ### index.ts
-```ts
-import { init, exit } from './myPackage'
 
-init({ url: 'hi', debug: false })
-exit(1)
+```ts
+import { init, exit } from "./myPackage";
+
+init({ url: "hi", debug: false });
+exit(1);
 ```
+
 index.ts 에서는 myPackage 라는 이름의 js 파일을 import 해준다.
 
 ### myPackage.js
+
 ```js
 // @ts-check
 /**
@@ -122,7 +132,7 @@ index.ts 에서는 myPackage 라는 이름의 js 파일을 import 해준다.
  * @returns {boolean}
  */
 export function init(config) {
-  return true
+  return true;
 }
 
 /**
@@ -131,10 +141,10 @@ export function init(config) {
  * @returns {number}
  */
 export function exit(code) {
-  return code + 1
+  return code + 1;
 }
-
 ```
+
 myPackage.js 파일에는 함수 상단에 `// @ts-check`라고 표시해주고 주석을 작성한다.
 
 `/**` 여기까지만 작성해도 vscode에서 자동완성으로 나머지 코드들을 완성해준다.
@@ -143,10 +153,10 @@ param에서 함수의 매개변수를 returns에서 return 타입을 설정해�
 
 이렇게 설정을 해주면 index.ts 파일에는 init과 exit 함수의 타입을 js파일의 변경 없이 자동완성이 뜨게된다.
 
-
 ---
 
 ## <a name="tsnode"></a>🎬 ts-node
+
 [npm ts-node](https://www.npmjs.com/package/ts-node)
 
 typescript로 작성된 파일을 실행하려면 js로 build를 한 후 `node index.js`와 같이 실행시켜야 테스트를 할 수 있다.
@@ -160,6 +170,7 @@ ts-node는 typescript 코드를 build하고 start할 필요 없이 실행시켜�
 ---
 
 ## <a name="definitely-typed"></a>🫙 DefinitelyTyped
+
 [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)
 
 Typescript 유형 정의를 위한 저장소이다.
